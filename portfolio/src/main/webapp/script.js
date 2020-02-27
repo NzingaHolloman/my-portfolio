@@ -25,3 +25,9 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+//add Hello Nzinga! to the page
+async function getHelloNzingaUsingAsyncAwait() {
+  const response = await fetch('/data');
+  const quote = await response.text();
+  document.getElementById('HelloNzinga-container').innerText = quote;
+}
