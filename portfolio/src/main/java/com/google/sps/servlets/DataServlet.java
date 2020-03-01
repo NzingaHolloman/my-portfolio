@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import java.util.ArrayList;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
@@ -39,8 +42,17 @@ public class DataServlet extends HttpServlet {
     String text = getParameter(request, "textInput", "default2");
     hardcoded.add(text);
     String json= new Gson().toJson(hardcoded);
-    response.setContentType("application/json;");
 
+    long timestamp = System.currentTimeMillis();
+    Entity taskEntity = new Entity("Task");
+    taskEntity.setProperty("title", "Comments");
+    taskEntity.setProperty("Comments:", text);
+    taskEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+
+    response.setContentType("application/json;");
     response.getWriter().println(json);
     response.sendRedirect("index.html");
   }
