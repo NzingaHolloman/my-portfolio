@@ -26,21 +26,25 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-//add Hello Nzinga! to the page
-//async function getHelloNzingaUsingAsyncAwait() {
-//  const response = await fetch('/data');
-//  const quote = await response.text();
-//  document.getElementById('HelloNzinga-container').innerText = quote;
-//}
-
 function getHelloNzingaUsingAsyncAwait() {
-    fetch('/data')  // sends a request to /my-data-url
-    .then(response => response.json()) // parses the response as JSON
+    fetch("data") // sends a request to /my-data-url
+    .then(response =>{
+        console.log(response);
+        return response.json();
+    }) // parses the response as JSON
     .then((myObject) => { // now we can reference the fields in myObject!
-    console.log(myObject[0]);
-    console.log(myObject[1]);
-    console.log(myObject[2]);
-    const quote = myObject[0]+" "+myObject[1]+" "+myObject[2];
-    document.getElementById('HelloNzinga-container').innerText = quote;
+    var quote= "";
+    
+    myObject.forEach(function(element){
+        console.log(element);
+        var para = document.createElement("p");
+        var node = document.createTextNode(element.toString());
+        para.appendChild(node);
+
+        var element = document.getElementById('HelloNzinga-container');
+        element.appendChild(para);
+    })
+
 });
 }
+
