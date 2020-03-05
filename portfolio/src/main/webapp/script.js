@@ -26,6 +26,7 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
+
 function getHelloNzingaUsingAsyncAwait() {
     fetch("data") // sends a request to /my-data-url
     .then(response =>{
@@ -47,4 +48,3 @@ function getHelloNzingaUsingAsyncAwait() {
 
 });
 }
-
