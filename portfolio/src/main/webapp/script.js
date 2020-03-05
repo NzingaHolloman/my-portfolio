@@ -26,9 +26,25 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-// Add Hello Nzinga! to the page
-async function getHelloNzingaUsingAsyncAwait() {
-  const response = await fetch('/data');
-  const quote = await response.text();
-  document.getElementById('HelloNzinga-container').innerText = quote;
+
+function getHelloNzingaUsingAsyncAwait() {
+    fetch("data") // sends a request to /my-data-url
+    .then(response =>{
+        console.log(response);
+        return response.json();
+    }) // parses the response as JSON
+    .then((myObject) => { // now we can reference the fields in myObject!
+    var quote= "";
+    
+    myObject.forEach(function(element){
+        console.log(element);
+        var para = document.createElement("p");
+        var node = document.createTextNode(element.toString());
+        para.appendChild(node);
+
+        var element = document.getElementById('HelloNzinga-container');
+        element.appendChild(para);
+    })
+
+});
 }
