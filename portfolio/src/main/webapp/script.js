@@ -53,3 +53,27 @@ function getHelloNzingaUsingAsyncAwait() {
       });
     });
 }
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  const data = new google.visualization.DataTable();
+  data.addColumn('string', 'Animal');
+  data.addColumn('number', 'Count');
+        data.addRows([
+          ['Brazil!', 10],
+          ['Mexico!', 5],
+          ['Alaska!', 15]
+        ]);
+
+  const options = {
+    'title': 'Destinations',
+    'width':500,
+    'height':400
+  };
+
+  const chart = new google.visualization.PieChart(
+      document.getElementById('chart-container'));
+  chart.draw(data, options);
+}
