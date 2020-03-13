@@ -16,35 +16,41 @@
  * Adds a random greeting to the page.
  */
 function addRandomGreeting() {
-  const greetings =
-      ['Brazil!', 'Bangkok, Thailand!', 'Accra, Ghana!', 'Botswana!','Machu Picchu!','Beijing, China!','Chichen Itza, Mexico!'];
+  const greetings = [
+    "Brazil!",
+    "Bangkok, Thailand!",
+    "Accra, Ghana!",
+    "Botswana!",
+    "Machu Picchu!",
+    "Beijing, China!",
+    "Chichen Itza, Mexico!"
+  ];
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
+  const greetingContainer = document.getElementById("greeting-container");
   greetingContainer.innerText = greeting;
 }
 
 
 function getHelloNzingaUsingAsyncAwait() {
-    fetch("data") // sends a request to /my-data-url
-    .then(response =>{
-        console.log(response);
-        return response.json();
-    }) // parses the response as JSON
-    .then((myObject) => { // now we can reference the fields in myObject!
-    var quote= "";
-    
-    myObject.forEach(function(element){
+  fetch("data")
+    .then(response => {
+      console.log(response);
+      return response.json();
+    })
+    .then(myObject => {
+      var quote = "";
+
+      myObject.forEach(function(element) {
         console.log(element);
         var para = document.createElement("p");
         var node = document.createTextNode(element.toString());
         para.appendChild(node);
 
-        var element = document.getElementById('HelloNzinga-container');
+        var element = document.getElementById("HelloNzinga-container");
         element.appendChild(para);
-    })
-
-});
+      });
+    });
 }
