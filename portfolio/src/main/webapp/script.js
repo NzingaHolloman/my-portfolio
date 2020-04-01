@@ -41,44 +41,50 @@ function getHelloNzingaUsingAsyncAwait() {
     })
     .then(myObject => {
       var quote = "";
-
       myObject.forEach(function(element) {
         console.log(element);
         var para = document.createElement("p");
         var node = document.createTextNode(element.toString());
         para.appendChild(node);
-
         var element = document.getElementById("HelloNzinga-container");
         element.appendChild(para);
       });
     });
 }
 
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load("current", { packages: ["corechart"] });
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-var data = google.visualization.arrayToDataTable([
-        ['Destination', 'Votes',],
-        ['Brazil', 10],
-        ['Mexico', 6],
-        ['Alaska', 8],
-        ['Texas', 11],
-        ['Philadelphia', 9]
-      ]);
-      var options = {
-        title: '',
-        chartArea: {width: '50%'},
-        hAxis: {
-          title: 'Votes',
-        },
-        vAxis: {
-          title: 'Destinations',
-          minValue: 20
-        }
-      };
-
+   fetch('/destination-data')
+   .then(response => {
+      console.log(response);
+      return response.json();
+    })
+  .then((tripVotes) => {
+  var data = new google.visualization.DataTable();//[
+    data.addColumn('string', 'Destination');
+    data.addColumn('number', 'Votes');
+    Object.keys(tripVotes).forEach((trip) => {
+      data.addRow([trip, tripVotes[trip]]);
+      console.log(trip);
+      console.log(tripVotes[trip]);
+    });
+  
+  var options = {
+    title: "", 
+    chartArea: { width: "50%" },
+    hAxis: {
+      title: "Votes"
+    },
+    vAxis: {
+      title: "Destinations",
+      minValue: 20
+    },
+  };
   var chart = new google.visualization.BarChart(
-      document.getElementById('chart-container'));
+    document.getElementById("chart-container")
+  );
   chart.draw(data, options);
+});
 }
