@@ -57,7 +57,7 @@ public class ChartDataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String trip = request.getParameter("destination");
-    long currentVotes = colorVotes.containsKey(trip) ? colorVotes.get(trip) : 0;
+    long currentVotes = colorVotes.getOrDefault(trip);
     colorVotes.put(trip, currentVotes + 1);
 
     long timestamp = System.currentTimeMillis();
