@@ -58,22 +58,27 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  const data = new google.visualization.DataTable();
-  data.addColumn('string', 'Animal');
-  data.addColumn('number', 'Count');
-        data.addRows([
-          ['Brazil!', 10],
-          ['Mexico!', 5],
-          ['Alaska!', 15]
-        ]);
+var data = google.visualization.arrayToDataTable([
+        ['Destination', 'Votes',],
+        ['Brazil', 10],
+        ['Mexico', 6],
+        ['Alaska', 8],
+        ['Texas', 11],
+        ['Philadelphia', 9]
+      ]);
+      var options = {
+        title: '',
+        chartArea: {width: '50%'},
+        hAxis: {
+          title: 'Votes',
+        },
+        vAxis: {
+          title: 'Destinations',
+          minValue: 20
+        }
+      };
 
-  const options = {
-    'title': 'Destinations',
-    'width':500,
-    'height':400
-  };
-
-  const chart = new google.visualization.PieChart(
+  var chart = new google.visualization.BarChart(
       document.getElementById('chart-container'));
   chart.draw(data, options);
 }
