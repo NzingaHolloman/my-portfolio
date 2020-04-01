@@ -61,6 +61,7 @@ function drawChart() {
       console.log(response);
       return response.json();
     })
+
   .then((tripVotes) => {
   var data = new google.visualization.DataTable();//[
     data.addColumn('string', 'Destination');
@@ -82,6 +83,7 @@ function drawChart() {
       minValue: 20
     },
   };
+  
   var chart = new google.visualization.BarChart(
     document.getElementById("chart-container")
   );

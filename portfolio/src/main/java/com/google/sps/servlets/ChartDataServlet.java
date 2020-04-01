@@ -33,22 +33,22 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/destination-data")
 public class ChartDataServlet extends HttpServlet {
-  private Map<String, Long> colorVotes = new HashMap<>();
-  @Override
+  private Map<String, Long> destinationVotes = new HashMap<>();
+    @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Votes");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
     Map<String, Long> updateVote = new HashMap<>();
-    for (Entity entity : results.asIterable()) {
-      String trip = (String) entity.getProperty("destination:");
+        for (Entity entity : results.asIterable()) {
+      String trip = (String) entity.getProperty("destination");
       long currentVotes = updateVote.containsKey(trip) ? updateVote.get(trip) : 0;
-      long pls = (long) entity.getProperty("total votes:");
-      
+      long pls = (long) entity.getProperty("total votes");
+
       updateVote.put(trip,pls+currentVotes);
      }
-    //colorVotes =updateVote;
+    //destinationVotes =updateVote;
     response.setContentType("application/json;");
     String json = new Gson().toJson(updateVote);
     response.getWriter().println(json);
@@ -57,13 +57,13 @@ public class ChartDataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String trip = request.getParameter("destination");
-    long currentVotes = colorVotes.containsKey(trip) ? colorVotes.get(trip) : 0;
-    colorVotes.put(trip, currentVotes + 1);
+    long currentVotes = destinationVotes.containsKey(trip) ? destinationVotes.get(trip) : 0;
+    destinationVotes.put(trip, currentVotes);
 
     long timestamp = System.currentTimeMillis();
     Entity taskEntity = new Entity("Votes");
-    taskEntity.setProperty("destination:", trip);
-    taskEntity.setProperty("total votes:", currentVotes + 1);
+    taskEntity.setProperty("destination", trip);
+    taskEntity.setProperty("total votes", currentVotes + 1);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
