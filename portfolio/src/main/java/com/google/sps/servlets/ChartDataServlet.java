@@ -46,7 +46,7 @@ public class ChartDataServlet extends HttpServlet {
       long currentVotes = updateVote.containsKey(trip) ? updateVote.get(trip) : 0;
       long pls = (long) entity.getProperty("total votes:");
       
-      updateVote.put(trip,pls+currentVotes);
+      updateVote.put(trip,pls + currentVotes);
      }
     //colorVotes =updateVote;
     response.setContentType("application/json;");
