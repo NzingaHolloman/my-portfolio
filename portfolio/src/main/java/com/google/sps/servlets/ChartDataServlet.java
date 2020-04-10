@@ -36,7 +36,7 @@ public class ChartDataServlet extends HttpServlet {
   private Map<String, Long> destinationVotes = new HashMap<>();
     @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Votes");
+    Query query = new Query("Votes"); 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 

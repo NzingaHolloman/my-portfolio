@@ -1,55 +1,109 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Nzinga Holloman's Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="content">
-        <h1 style="font-size:500%;" ><center>Nzinga Holloman</center></h1>
-        <h2><center>Hello! Welcome to my portfolio.</center></h2>
-        <img src="MyImages/ezgif.com-crop.gif" alt="Gif" class = center>
-        <h2><center>About Me</center></h2>
+    <button class="tablink" onclick="openPage('AboutMe', this, '#4d6d94')">
+      About Me
+    </button>
 
-        <p> <center>I'm a 2nd year Computer Science student at North Carolina A&T State University.
-            💛💙AGGIE PRIDE!!💙💛</center></p>
-        <p><center>Click <a href="AboutMe.html">here</a> to learn a little more.<center></p>
-        <p><center>Click <a href="MyGallery.html">here</a> to see some pictures!<center></p>
+    <button class="tablink" onclick="openPage('Home', this, '#86B3D1')"
+      id="defaultOpen">
+      Home
+    </button>
 
-        <form action="/data" method="POST">
-            <p>Leave a comment!</p>
-            <input type="textarea" name="textInput">
-            <br/><br/>
-            <input type="submit" />
-        </form> 
+    <button class="tablink" onclick="openPage('Projects', this, '#99ced3')">
+      Projects
+    </button>
 
-        <div id="HelloNzinga-container"></div>
-        <script> getHelloNzingaUsingAsyncAwait() </script>
+    <button class="tablink" onclick="openPage('Gallery', this, '#edb5bf')">
+      Gallery
+    </button>
 
-        <h2><center>My Projects <center></h2>
-        <h4>Flash Card App </h4>
-        <p><center>A basic Flashcard app that can display a question 
-            then respond to a user's tap to display the answer to 
-            the question. I used Andriod Studio for this program and 
-            written in Java.<center><p>
-        <a href="https://github.com/NzingaHolloman/MyFirstFlashcard">View code for this App on my GitHub.</a>
-        <p> </p>
-
-        <img src="MyImages/FlashCardApp.gif" alt="visit my github please" class = center>
-        <p> </p>
-        <p3>Click <a href="MyProjects.html">here</a> to visit my project gallery.   </p3>
-        
-        <h3><center>See more of my projects on <a href="https://github.com/NzingaHolloman">GitHub</a> </center> </h3>
-        <a href="https://github.com/NzingaHolloman">
-            <img src="MyImages/images.png" alt="GitHub UserName: NzingaHolloman" style="width:42px;height:42px;border:0;">
-        </a>
-
-        <h3><center>Connect with me on <a href="https://www.linkedin.com/in/nzinga-holloman/">LinkedIn</a> </center> </h3>
-        <a href="https://www.linkedin.com/in/nzinga-holloman/">
-            <img src="MyImages/Linkedin.png" alt="Linked in Icon" style="width:42px;height:42px;border:0;">
-        </a> 
+    <div id="AboutMe" class="tabcontent">
+      <h3>Home</h3>
+      <p>Home is where the heart is..</p>
     </div>
+
+    <div id="Home" class="tabcontent">
+      <h1 style="font-size: 60px;"><center>Nzinga Holloman</center></h1>
+      <div class="row">
+        <div class="column">
+          <figure>
+            <div class="container">
+              <img src="MyImages\Graduation.jpg" alt="Image" />
+              <div class="overlay">
+                🎓 Cheltenham High School, Class of 2018
+              </div>
+            </div>
+          </figure>
+        </div>
+        <div class="column">
+          <div class="portfolioText">
+            <div class="container2">
+              <h2><b>Hi! Welcome to my portfolio.</b></h2>
+              <hr />
+              <p>
+                I am a Computer Science student at the illustrious North
+                Carolina A&T State University.
+              </p>
+
+              <p>
+                I started my computer science journey at West Chester University
+                of Pennsylvania. At the beginning of my first computer Science
+                course, I honestly had no idea what was going on, but later when
+                I took the time to start programming on my own there was an
+                instant connection. After spending hours working on a code and
+                finally getting it running, I get would get this amazing
+                feeling, that fueled my curiosity and left a sense of pride. As
+                the school year progressed, saw the impact that technology has
+                on the world, and the ability it has to change it for the
+                better. Since then I have transferred to the #1 producer of
+                African American undergraduates in Engineering, North Carolina
+                A&T State University for their Computer Science program.
+                Currenty I am being challenged, enlightened, and prepared for
+                success.
+              </p>
+              <h2><b>Let's connect!</b></h2>
+              <a
+                href="https://www.linkedin.com/in/nzinga-holloman/"
+                class="portfolioTBtn"
+                >LinkedIn</a
+              >
+              <a href="https://github.com/NzingaHolloman" class="portfolioTBtn"
+                >GitHub</a
+              >
+              <br />
+              <br />
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form action="/data" method="POST">
+        <h2><b>🌻Leave a comment!🌻</b></h2>
+        <input type="textarea" name="textInput" />
+        <br /><br />
+        <input type="submit" class="portfolioTBtn" />
+      </form>
+
+      <div id="HelloNzinga-container"></div>
+     
+
+    </div>
+
+    <div id="Projects" class="tabcontent">
+      <h3>Contact</h3>
+      <p>Get in touch, or swing by for a cup of coffee.</p>
+    </div>
+
+    <div id="Gallery" class="tabcontent">
+      <h3>About</h3>
+    </div>
+    <script src="script.js"></script>
   </body>
 </html>

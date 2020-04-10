@@ -15,6 +15,10 @@
 /**
  * Adds a random greeting to the page.
  */
+document.addEventListener('DOMContentLoaded', (event) => {
+  getHelloNzingaUsingAsyncAwait()
+})
+
 function addRandomGreeting() {
   const greetings = [
     "Brazil!",
@@ -23,7 +27,7 @@ function addRandomGreeting() {
     "Botswana!",
     "Machu Picchu!",
     "Beijing, China!",
-    "Chichen Itza, Mexico!"
+    "Chichen Itza, Mexico!",
   ];
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
@@ -35,13 +39,13 @@ function addRandomGreeting() {
 
 function getHelloNzingaUsingAsyncAwait() {
   fetch("data")
-    .then(response => {
+    .then((response) => {
       console.log(response);
       return response.json();
     })
-    .then(myObject => {
+    .then((myObject) => {
       var quote = "";
-      myObject.forEach(function(element) {
+      myObject.forEach(function (element) {
         console.log(element);
         var para = document.createElement("p");
         var node = document.createTextNode(element.toString());
@@ -52,41 +56,65 @@ function getHelloNzingaUsingAsyncAwait() {
     });
 }
 
-google.charts.load("current", { packages: ["corechart"] });
-google.charts.setOnLoadCallback(drawChart);
+// // google.charts.load("current", { packages: ["corechart"] });
+// // google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
-   fetch('/destination-data')
-   .then(response => {
-      console.log(response);
-      return response.json();
-    })
+// function drawChart() {
+//   fetch("/destination-data")
+//     .then((response) => {
+//       console.log(response);
+//       return response.json();
+//     })
 
-  .then((tripVotes) => {
-  var data = new google.visualization.DataTable();//[
-    data.addColumn('string', 'Destination');
-    data.addColumn('number', 'Votes');
-    Object.keys(tripVotes).forEach((trip) => {
-      data.addRow([trip, tripVotes[trip]]);
-      console.log(trip);
-      console.log(tripVotes[trip]);
-    });
-  
-  var options = {
-    title: "", 
-    chartArea: { width: "50%" },
-    hAxis: {
-      title: "Votes"
-    },
-    vAxis: {
-      title: "Destinations",
-      minValue: 20
-    },
-  };
-  
-  var chart = new google.visualization.BarChart(
-    document.getElementById("chart-container")
-  );
-  chart.draw(data, options);
-});
+//     .then((tripVotes) => {
+//       var data = new google.visualization.DataTable(); //[
+//       data.addColumn("string", "Destination");
+//       data.addColumn("number", "Votes");
+//       Object.keys(tripVotes).forEach((trip) => {
+//         data.addRow([trip, tripVotes[trip]]);
+//         console.log(trip);
+//         console.log(tripVotes[trip]);
+//       });
+
+//       var options = {
+//         title: "",
+//         chartArea: { width: "50%" },
+//         hAxis: {
+//           title: "Votes",
+//         },
+//         vAxis: {
+//           title: "Destinations",
+//           minValue: 20,
+//         },
+//       };
+
+//       var chart = new google.visualization.BarChart(
+//         document.getElementById("chart-container")
+//       );
+//       chart.draw(data, options);
+//     });
+// }
+
+function openPage(pageName, elmnt, color) {
+  // Hide all elements with class="tabcontent" by default */
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Remove the background color of all tablinks/buttons
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+
+  // Show the specific tab content
+  document.getElementById(pageName).style.display = "block";
+
+  // Add the specific color to the button used to open the tab content
+  elmnt.style.backgroundColor = color;
 }
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
