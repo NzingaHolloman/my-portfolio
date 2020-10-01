@@ -10,22 +10,148 @@
       About Me
     </button>
 
-    <button class="tablink" onclick="openPage('Home', this, '#86B3D1')"
-      id="defaultOpen">
+    <button
+      class="tablink"
+      onclick="openPage('Home', this, '#86B3D1')"
+      id="defaultOpen"
+    >
       Home
     </button>
 
-    <button class="tablink" onclick="openPage('Projects', this, '#99ced3')">
+    <button class="tablink" onclick="openPage('Projects', this, '#8B7DAD')">
       Projects
     </button>
 
-    <button class="tablink" onclick="openPage('Gallery', this, '#edb5bf')">
-      Gallery
-    </button>
-
     <div id="AboutMe" class="tabcontent">
-      <h3>Home</h3>
-      <p>Home is where the heart is..</p>
+      <h1 style="font-size: 60px;"><center>Interest</center></h1>
+
+      <div class="row">
+        <div class="column">
+          <div class="portfolioText2">
+            <div class="container2">
+              <div class="a">
+                <h2><b>🌲Nature Enthusiast🌲</b></h2>
+              </div>
+              <hr />
+              <div class="a">
+                <h2><b>🌵🌼❄️🍄🌲⛰️🍁🌴</b></h2>
+              </div>
+              <div class="row">
+                <div class="column">
+                  <p>Favorate Activities</p>
+                  <ul>
+                    <li>Swimming</li>
+                    <li>Camping</li>
+                    <li>Skiing</li>
+                    <li>Running</li>
+                    <li>Gardening</li>
+                    <li>Stargazing</li>
+                  </ul>
+                </div>
+                <div class="column">
+                  <p>Outdoor Bucket List</p>
+                  <ul>
+                    <li>Quad Biking</li>
+                    <li>Swimming with Dolphins</li>
+                    <li>Snow tubing</li>
+                    <li>Ski Diving</li>
+                    <li>Capture the Northern Lights on camera</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+        </div>
+        <div class="column">
+          <button class="portfolioTBtn" onclick="randomizeImage()">
+            <b> Click for a pic</b>
+          </button>
+          <br />
+          <br />
+          <figure>
+            <div class="container">
+              <div id="random-image-container"></div>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="portfolioText2">
+        <div class="container2">
+          <div class="a">
+            <h2><b>🗺️Traveling✈️</b></h2>
+          </div>
+          <hr />
+          <p>
+            <center>
+              I have always been passionate about traveling, because it
+              satisfies my drive to learn and immerse myself in new societies.
+              It is important to my personal growth that I can work and
+              communicate across different cultures. The valuable assets of
+              respect, global awareness, and acceptance will assist me in this
+              increasingly globalized world.
+            </center>
+          </p>
+        </div>
+      </div>
+      <br />
+      
+      <div class="row">
+        <div class="column">
+          <!-- <div class="container2">
+            <div class="column2">
+              <html>
+                <head>
+                  <h2><b>✈️Vote for my next trip!✈️</b></h2>
+                  <script src="https://www.gstatic.com/charts/loader.js"></script>
+                  <script src="script.js"></script>
+                </head>
+                <body>
+                  <div id="chart-container"><center></center></div>
+                </body>
+                <br />
+              </html>
+            </div>
+            <br /><br /><br /><br /><br /><br />
+            <form action="/destination-data" method="POST">
+              <select name="destination">
+                <option value="Brazil">Brazil</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Thailand">Alaska</option>
+                <option value="Botswana">Botswana</option>
+                <option value="Ghana">Ghana</option>
+              </select>
+              <button id="portfolioTBtn">Submit</button>
+            </form>
+          </div> -->
+        </div>
+        <div class="column">
+          <div class="portfolioText2">
+            <div class="container2">
+              <div class="a">
+                <h2><b>🗺️Top Travel Destinations🗺️</b></h2>
+              </div>
+              <hr />
+              <div class="column2">
+                <img src="MyImages\globe.gif" alt="gif" />
+              </div>
+              <ul>
+                <li>Pyramids of Giza, Egypt</li>
+                <li>Salar De Uyuni, Bolivia</li>
+                <li>Antelope Canyon, Arizona, USA</li>
+                <li>Reed Flute Caves, China</li>
+                <li>Victoria Falls, Livingstone, Zambia</li>
+                <li>Machu Picchu, Peru</li>
+              </ul>
+              <br />
+            </div>
+            <br />
+            <br />
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="Home" class="tabcontent">
@@ -34,7 +160,7 @@
         <div class="column">
           <figure>
             <div class="container">
-              <img src="MyImages\Graduation.jpg" alt="Image" />
+              <img align="middle" src="MyImages\Graduation.jpg" alt="Image" />
               <div class="overlay">
                 🎓 Cheltenham High School, Class of 2018
               </div>
@@ -84,26 +210,56 @@
         </div>
       </div>
 
-      <form action="/data" method="POST">
+      <form action="/new-comment" method="POST">
         <h2><b>🌻Leave a comment!🌻</b></h2>
-        <input type="textarea" name="textInput" />
+        <input type="text" name="title" />
         <br /><br />
         <input type="submit" class="portfolioTBtn" />
       </form>
 
-      <div id="HelloNzinga-container"></div>
-     
+      <div class="flex-container" id="flex-container"></div>
 
     </div>
 
     <div id="Projects" class="tabcontent">
-      <h3>Contact</h3>
-      <p>Get in touch, or swing by for a cup of coffee.</p>
+      <h1 style="font-size: 60px;"><center>Project Gallery</center></h1>
+
+      <div class="rowP">
+        <div class="sideP">
+          <h2>Additional</h2>
+          <h4>PwC Innovation Challenge at NCAT - March 5, 2020</h4>
+          <img src="MyImages\PwC.jpg" alt="PwC image" height="200PX" /><br />
+          <h3>🏆 2nd place 🏆</h3>
+          <p>
+            Designed a web application that unlocks maximum potential for
+            children affected by learning disabilities through online support,
+            education, and resources. Technology Used: ARTYOM.JS, HTML, CSS,
+            JavaScript, Bootstraps
+          </p>
+          <h3>More Text</h3>
+          <p>Lorem ipsum dolor sit ame.</p>
+          <div class="fakeimgP" style="height: 60px;">Image</div>
+          <br />
+          <div class="fakeimgP" style="height: 60px;">Image</div>
+        </div>
+        <div class="main">
+          <h2>Coming Soon</h2>
+          <!-- <h2>Flash Card App</h2>
+    <h5>Title description, Sep 2, 2017</h5>
+    <p>A Flashcard app that takes in input questions and answers, then displays them on the screen. This app can hold multiple flashcards.</p>
+    <br>
+    <h2>2D Fighting Game</h2>
+    <p>This project was designed for my a course on Computer Programming
+          Design. This game is on single player mode, where the user is verseing
+          a CPU. Both the user and CPU can attack and move across the screen.
+          there are health bars that decrease what when an attack has landed on
+          a player. The goal of the game is to make that CPU'S health bar run
+          out.</p>
+    <br> -->
+        </div>
+      </div>
     </div>
 
-    <div id="Gallery" class="tabcontent">
-      <h3>About</h3>
-    </div>
     <script src="script.js"></script>
   </body>
 </html>

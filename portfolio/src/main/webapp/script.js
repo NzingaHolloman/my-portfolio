@@ -15,9 +15,12 @@
 /**
  * Adds a random greeting to the page.
  */
-document.addEventListener('DOMContentLoaded', (event) => {
-  getHelloNzingaUsingAsyncAwait()
-})
+document.addEventListener("DOMContentLoaded", (event) => {
+  loadTasks();
+  //drawChart();
+  firstImage();
+
+});
 
 function addRandomGreeting() {
   const greetings = [
@@ -37,63 +40,44 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-function getHelloNzingaUsingAsyncAwait() {
-  fetch("data")
+//google.charts.load("current", { packages: ["corechart"] });
+//google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+  fetch("/destination-data")
     .then((response) => {
       console.log(response);
       return response.json();
     })
-    .then((myObject) => {
-      var quote = "";
-      myObject.forEach(function (element) {
-        console.log(element);
-        var para = document.createElement("p");
-        var node = document.createTextNode(element.toString());
-        para.appendChild(node);
-        var element = document.getElementById("HelloNzinga-container");
-        element.appendChild(para);
+
+    .then((tripVotes) => {
+      var data = new google.visualization.DataTable(); //[
+      data.addColumn("string", "Destination");
+      data.addColumn("number", "Votes");
+      Object.keys(tripVotes).forEach((trip) => {
+        data.addRow([trip, tripVotes[trip]]);
+        console.log(trip);
+        console.log(tripVotes[trip]);
       });
+
+      var options = {
+        title: "",
+        chartArea: { width: "50%" },
+        hAxis: {
+          title: "Votes",
+        },
+        vAxis: {
+          title: "Destinations",
+          minValue: 20,
+        },
+      };
+
+      var chart = new google.visualization.BarChart(
+        document.getElementById("chart-container")
+      );
+      chart.draw(data, options);
     });
 }
-
-// // google.charts.load("current", { packages: ["corechart"] });
-// // google.charts.setOnLoadCallback(drawChart);
-
-// function drawChart() {
-//   fetch("/destination-data")
-//     .then((response) => {
-//       console.log(response);
-//       return response.json();
-//     })
-
-//     .then((tripVotes) => {
-//       var data = new google.visualization.DataTable(); //[
-//       data.addColumn("string", "Destination");
-//       data.addColumn("number", "Votes");
-//       Object.keys(tripVotes).forEach((trip) => {
-//         data.addRow([trip, tripVotes[trip]]);
-//         console.log(trip);
-//         console.log(tripVotes[trip]);
-//       });
-
-//       var options = {
-//         title: "",
-//         chartArea: { width: "50%" },
-//         hAxis: {
-//           title: "Votes",
-//         },
-//         vAxis: {
-//           title: "Destinations",
-//           minValue: 20,
-//         },
-//       };
-
-//       var chart = new google.visualization.BarChart(
-//         document.getElementById("chart-container")
-//       );
-//       chart.draw(data, options);
-//     });
-// }
 
 function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
@@ -116,5 +100,60 @@ function openPage(pageName, elmnt, color) {
   elmnt.style.backgroundColor = color;
 }
 
+function firstImage() {
+  const imgUrl = "Nature/random-7.jpg";
+
+  const imgElement = document.createElement("img");
+  imgElement.src = imgUrl;
+
+  const imageContainer = document.getElementById("random-image-container");
+  // Remove the previous image.
+  imageContainer.innerHTML = "";
+  imageContainer.appendChild(imgElement);
+}
+
+function randomizeImage() {
+  // The images directory contains 13 images, so generate a random index between
+  // 1 and 13.
+  const imageIndex = Math.floor(Math.random() * 6) + 1;
+  const imgUrl = "Nature/random-" + imageIndex + ".jpg";
+
+  const imgElement = document.createElement("img");
+  imgElement.src = imgUrl;
+
+  const imageContainer = document.getElementById("random-image-container");
+  // Remove the previous image.
+  imageContainer.innerHTML = "";
+  imageContainer.appendChild(imgElement);
+}
+
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
+function loadTasks() {
+  const flexElement = document.getElementById('flex-container');
+  fetch('/list-comment').then(response => response.json()).then((tasks) => {
+    //const taskListElement = document.getElementById('task-list');
+    const divElement = document.createElement('div'); 
+
+    tasks.forEach((task) => {
+    //   taskListElement.appendChild(createTaskElement(task));
+      divElement.appendChild(createTaskElement(task));
+      flexElement.appendChild(divElement);
+
+    })
+  });
+}
+
+/** Creates an element that represents a task, including its delete button. */
+function createTaskElement(task) {
+  const taskElement = document.createElement('li');
+  taskElement.className = 'task';
+
+  const titleElement = document.createElement('span');
+  titleElement.innerText = task.title;
+
+  taskElement.appendChild(titleElement);
+  
+  return taskElement;
+}

@@ -67,6 +67,6 @@ public class ChartDataServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
-    response.sendRedirect("AboutMe.html");
+    //response.sendRedirect("index.html");
   }
 }
